@@ -6,6 +6,10 @@
 ```shell
 docker-compose up --build
 ```
+
+以下のようなJupyterベースのコンテンツを通じてIcebergの機能と仕組みが学べます。
+![](https://storage.googleapis.com/zenn-user-upload/dda9998a7f59-20240310.png)
+
 ### 対象者
 これからApache Icebergを学びたい人
 ### 前提知識
