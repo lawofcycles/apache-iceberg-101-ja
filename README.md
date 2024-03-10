@@ -1,4 +1,4 @@
-# apache-iceberg-101-ja
+# はじめようApache Icebergハンズオン
 <img src="image/banner.jpg">
 
 ## ハンズオン概要
