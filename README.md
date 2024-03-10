@@ -7,7 +7,8 @@
 docker-compose up --build
 ```
 
-以下のようなJupyterベースのコンテンツを通じてIcebergの機能と仕組みが学べます。
+以下のようなJupyterベースのコンテンツを通じてIcebergの機能と仕組みが学べます。  
+コンテンツの詳細は`spark/notebooks`配下のNotebookを参照してください。
 ![](https://storage.googleapis.com/zenn-user-upload/dda9998a7f59-20240310.png)
 
 ### 対象者
@@ -26,7 +27,8 @@ docker-compose up --build
 ハンズオンの中で、必要な概念や用語については補足説明を加えています。  
 ビッグデータ処理や分散システムの詳細な知識は必須ではありませんが、これらの技術への関心や基礎的な理解があると、Apache Icebergの特徴やメリットをより深く理解することができるでしょう。
 ## コンテンツ
-以下のコンテンツが用意されています。Notebook間は依存せず、どのNotebookからでも始められるように作ってありますが、初めての人はChapter1から進めることをオススメします。
+以下のコンテンツが用意されています。Notebook間は依存せず、どのNotebookからでも始められるように作ってありますが、初めての人はChapter1から進めることをオススメします。  
+コンテンツの詳細は`spark/notebooks`配下のNotebookを参照してください。
 
 - Chapter1 - Hello Iceberg World：細かい仕組みの理解は一旦脇に置き、Icebergの世界観をざっくり体験します
 - Chapter2 - Understanding The Iceberg Architecture Basic：Icebergのアーキテクチャの基本を理解します
