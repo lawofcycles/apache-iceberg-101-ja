@@ -1,31 +1,17 @@
-# Licensed to the Apache Software Foundation (ASF) under one
-# or more contributor license agreements.  See the NOTICE file
-# distributed with this work for additional information
-# regarding copyright ownership.  The ASF licenses this file
-# to you under the Apache License, Version 2.0 (the
-# "License"); you may not use this file except in compliance
-# with the License.  You may obtain a copy of the License at
-#
-#   http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing,
-# software distributed under the License is distributed on an
-# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-# KIND, either express or implied.  See the License for the
-# specific language governing permissions and limitations
-# under the License.
 ---
 version: "3"
 
 services:
   spark-iceberg:
     container_name: spark-iceberg
-    build: spark/
+    build: spark-iceberg/
     networks:
-      iceberg_net:
+      handson_net:
     depends_on:
-      - rest
-      - minio
+      rest:
+        condition: service_started
+      minio:
+        condition: service_started
     volumes:
       - ./warehouse:/home/iceberg/warehouse
       - ./notebooks:/home/iceberg/notebooks/notebooks
@@ -39,10 +25,10 @@ services:
       - 10000:10000
       - 10001:10001
   rest:
-    image: tabulario/iceberg-rest:1.5.0
     container_name: iceberg-rest
+    build: iceberg-rest-catalog/
     networks:
-      iceberg_net:
+      handson_net:
     ports:
       - 8181:8181
     environment:
@@ -60,8 +46,9 @@ services:
       - MINIO_ROOT_PASSWORD=password
       - MINIO_DOMAIN=minio
     networks:
-      iceberg_net:
+      handson_net:
         aliases:
+          - minio
           - warehouse.minio
     ports:
       - 9001:9001
@@ -73,7 +60,7 @@ services:
     image: minio/mc
     container_name: mc
     networks:
-      iceberg_net:
+      handson_net:
     environment:
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password
@@ -87,4 +74,4 @@ services:
       tail -f /dev/null
       "
 networks:
-  iceberg_net:
+  handson_net:

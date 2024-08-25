@@ -1,0 +1,51 @@
+plugins {
+  id 'java'
+  id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+repositories {
+  mavenCentral()
+}
+
+ext {
+  icebergVersion = '1.6.0'
+  hadoopVersion = '3.3.6'
+}
+
+dependencies {
+  implementation "org.apache.iceberg:iceberg-api:${icebergVersion}"
+  implementation "org.apache.iceberg:iceberg-core:${icebergVersion}"
+  implementation "org.apache.iceberg:iceberg-core:${icebergVersion}:tests"
+  implementation "org.apache.iceberg:iceberg-aws:${icebergVersion}"
+  implementation "org.apache.iceberg:iceberg-azure:${icebergVersion}"
+  implementation "org.apache.iceberg:iceberg-gcp:${icebergVersion}"
+  implementation "org.apache.iceberg:iceberg-bundled-guava:${icebergVersion}"
+
+  implementation "org.apache.hadoop:hadoop-common:${hadoopVersion}"
+  implementation "org.apache.hadoop:hadoop-hdfs-client:${hadoopVersion}"
+
+  runtimeOnly "org.apache.iceberg:iceberg-aws-bundle:${icebergVersion}"
+  runtimeOnly "org.apache.iceberg:iceberg-azure-bundle:${icebergVersion}"
+  runtimeOnly "org.apache.iceberg:iceberg-gcp-bundle:${icebergVersion}"
+
+  implementation 'org.apache.httpcomponents.client5:httpclient5:5.3.1'
+  implementation 'org.apache.httpcomponents.core5:httpcore5:5.2.5'
+
+  implementation 'com.google.guava:guava:33.2.1-jre'
+
+  implementation 'org.xerial:sqlite-jdbc:3.46.0.0'
+  implementation 'org.postgresql:postgresql:42.7.2'
+}
+
+jar {
+  manifest {
+    attributes 'Main-Class': 'org.apache.iceberg.rest.RESTCatalogServer'
+  }
+}
+
+shadowJar {
+  mergeServiceFiles()
+  zip64 true
+}
+
+build.dependsOn(shadowJar)
