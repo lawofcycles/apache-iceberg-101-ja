@@ -186,6 +186,6 @@ metastore_db
 # Postgres data
 warehouse
 notebooks
-!spark/notebooks
+!spark-iceberg/notebooks
 
 .vscode
