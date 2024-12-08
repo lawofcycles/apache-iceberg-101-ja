@@ -18,6 +18,3 @@ out
 build
 dependencies.lock
 **/dependencies.lock
-gradle/
-gradle/wrapper/gradle-wrapper.jar
-
