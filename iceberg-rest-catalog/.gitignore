@@ -13,7 +13,6 @@ site
 out
 
 # gradle build
-.gradle
 .out/
 build
 dependencies.lock
